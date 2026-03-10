@@ -1,0 +1,127 @@
+/* Styles de navigation et menu */
+
+.menu-principal {
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.95), rgba(45, 45, 45, 0.95));
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    margin-bottom: 30px;
+}
+
+.menu-principal ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.menu-principal ul li {
+    list-style-type: none;
+    background-color: transparent;
+    padding: 0;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.menu-principal ul li::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #4a9eff, #6db3ff);
+    transition: width 0.3s ease;
+}
+
+.menu-principal ul li:hover::after {
+    width: 80%;
+}
+
+.menu-principal ul li:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.menu-principal ul li a {
+    padding: 18px 25px;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: clamp(14px, 1.5vw, 18px);
+    display: block;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+}
+
+.menu-principal ul li:hover a {
+    color: #6db3ff;
+}
+
+.menu-secondaire {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.menu-secondaire a {
+    background: linear-gradient(135deg, #4a9eff, #357abd);
+    border-radius: 8px;
+    padding: 10px 25px !important;
+    font-weight: 600 !important;
+    margin: 8px;
+}
+
+.menu-secondaire a:hover {
+    background: linear-gradient(135deg, #357abd, #2a5f94);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .menu-principal ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 5px 0;
+    }
+    
+    .menu-principal ul li a {
+        font-size: 14px;
+        padding: 12px 15px;
+    }
+    
+    .menu-secondaire {
+        margin-left: auto;
+        margin-right: 10px;
+    }
+    
+    .menu-secondaire a {
+        padding: 8px 20px !important;
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-principal ul {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .menu-principal ul li {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .menu-secondaire {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        justify-content: center;
+    }
+}

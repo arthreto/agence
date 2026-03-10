@@ -1,0 +1,97 @@
+/* Composants réutilisables */
+
+.titre {
+    font-size: 50px;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    color: white;
+    font-family: "Inter", sans-serif;
+}
+
+.presentation {
+    width: 80%;
+    margin: 0 auto;
+    background: linear-gradient(#363636, #35363b);
+    border-radius: 2vw;
+}
+
+.inpresentation {
+    padding-top: 30px;
+    position: relative;
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
+    padding-bottom: 30px;
+    color: white;
+    font-family: "Inter", sans-serif;
+}
+
+.tendances {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.city {
+    position: relative;
+    max-width: 30%;
+    min-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s;
+}
+
+.city a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s;
+}
+
+.city:hover {
+    transform: scale(1.08);
+    z-index: 2;
+}
+
+.city img {
+    width: 100%;
+    height: auto;
+    border-radius: 18px;
+    filter: brightness(60%);
+    transition: 0.3s;
+}
+
+.city:hover img {
+    filter: brightness(80%);
+    transition: 0.3s;
+}
+
+.city .nom {
+    position: absolute;
+    text-align: center;
+    font-size: clamp(12px, 5vw, 39px);
+    font-weight: 800;
+    font-family: "Inter", sans-serif;
+    color: white;
+    white-space: nowrap;
+    transition: 0.3s;
+}
+
+.city:hover .nom {
+    font-size: clamp(12px, 5vw, 45px);
+    transition: 0.3s;
+}
+
+.previewimg {
+    display: block;
+    margin: 20px auto;
+    max-width: 50%;
+    border-radius: 18px;
+}

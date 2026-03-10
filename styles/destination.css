@@ -1,0 +1,271 @@
+/* Styles pour la page destination info */
+
+.destination-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* Hero section avec bannière */
+.destination-hero {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.destination-banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.hero-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 50px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+}
+
+.destination-title {
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size: clamp(2.5em, 6vw, 4.5em);
+    font-weight: 800;
+    margin: 0 0 15px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.destination-rating {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.5em;
+}
+
+.rating-number {
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 0.7em;
+}
+
+/* Content layout */
+.destination-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    padding: 0 40px;
+    margin-bottom: 60px;
+}
+
+.destination-main {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Cards */
+.info-card {
+    background: #2a2a2a;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.info-card h2 {
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 1.8em;
+    margin: 0 0 20px 0;
+    font-weight: 600;
+}
+
+.destination-description {
+    color: #cccccc;
+    font-family: "Inter", sans-serif;
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.points-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.points-list li {
+    color: #cccccc;
+    font-family: "Inter", sans-serif;
+    font-size: 1.05em;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.points-list li:hover {
+    background: rgba(74, 158, 255, 0.1);
+}
+
+/* Sidebar booking card */
+.destination-sidebar {
+    position: sticky;
+    top: 80px;
+    height: fit-content;
+}
+
+.booking-card {
+    background: #2a2a2a;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 8px 30px rgba(74, 158, 255, 0.3);
+}
+
+.booking-card h3 {
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 1.6em;
+    margin: 0 0 25px 0;
+    font-weight: 600;
+    text-align: center;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.info-icon {
+    font-size: 1.8em;
+    min-width: 40px;
+    text-align: center;
+}
+
+.info-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.info-label {
+    color: rgba(255, 255, 255, 0.85);
+    font-family: "Inter", sans-serif;
+    font-size: 0.85em;
+    font-weight: 400;
+}
+
+.info-value {
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 1.1em;
+    font-weight: 700;
+}
+
+.book-btn {
+    display: block;
+    width: 90%;
+    padding: 18px;
+    background: white;
+    color: #357abd;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 12px;
+    font-family: "Inter", sans-serif;
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-top: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.book-btn:hover {
+    background: #f0f0f0;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .destination-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .destination-sidebar {
+        position: static;
+    }
+    
+    .booking-card {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .destination-hero {
+        height: 350px;
+    }
+    
+    .hero-overlay {
+        padding: 30px 20px;
+    }
+    
+    .destination-content {
+        padding: 0 20px;
+        gap: 30px;
+    }
+    
+    .info-card,
+    .booking-card {
+        padding: 25px 20px;
+    }
+    
+    .points-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .destination-hero {
+        height: 280px;
+    }
+    
+    .hero-overlay {
+        padding: 20px 15px;
+    }
+    
+    .destination-title {
+        font-size: 2em;
+    }
+    
+    .destination-rating {
+        font-size: 1.2em;
+    }
+    
+    .destination-content {
+        padding: 0 10px;
+    }
+    
+    .info-card h2,
+    .booking-card h3 {
+        font-size: 1.4em;
+    }
+    
+    .info-row {
+        padding: 15px;
+    }
+}

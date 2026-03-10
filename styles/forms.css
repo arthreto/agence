@@ -1,0 +1,48 @@
+/* Styles des formulaires */
+
+.presentation form {
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.presentation form label {
+    font-family: "Inter", sans-serif;
+    color: white;
+    font-size: 1.1em;
+}
+
+.presentation form input,
+.presentation form textarea {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-family: "Inter", sans-serif;
+    font-size: 1em;
+    background-color: #f0f0f0;
+}
+
+.presentation form input:focus,
+.presentation form textarea:focus {
+    outline: 2px solid #6e6e6e;
+}
+
+.presentation form button {
+    padding: 10px;
+    background-color: #4e4e4e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: "Inter", sans-serif;
+    font-size: 1.2vw;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.presentation form button:hover {
+    background-color: #6e6e6e;
+}
