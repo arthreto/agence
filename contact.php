@@ -41,7 +41,7 @@
                     
                     <div class="form-group">
                         <label for="message">Votre message</label>
-                        <textarea id="message" name="message" rows="6" placeholder="Décrivez votre projet de voyage..." required></textarea>
+                        <textarea id="message" name="message" rows="6" placeholder="Quel est votre question" required></textarea>
                     </div>
                     
                     <button type="submit" class="submit-btn">Envoyer le message</button>

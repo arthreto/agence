@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/navigation.css">
+    <link rel="stylesheet" href="styles/navigation.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="styles/components.css">
     <link rel="stylesheet" href="styles/forms.css">
-    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/footer.css?v=<?php echo time(); ?>">
     <link rel="icon" type="image/png" href="rsc/icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,9 +28,8 @@
     <div class="tendances">
         <?php 
         $allDestination = getAllDestinations(); 
-        foreach ($allDestination as $destination) { 
-            $info = getDestinationInfo($destination); 
-            echo '<div class="city"><a href="destinationinfo.php?select=' . $destination . '"><img src="' . $info["image"] . '" alt="' . $destination . '"><h2 class="nom">' . $destination . '</h2></a></div>'; 
+        foreach ($allDestination as $info) {
+            echo '<div class="city"><a href="destinationinfo.php?select=' . $info["nom"] . '"><img src="' . $info["image"] . '" alt="' . $info["nom"] . '"><h2 class="nom">' . $info["nom"] . '</h2></a></div>';
         } ?>
     </div>   
     <?php include 'includes/footer.php'; ?>

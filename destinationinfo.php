@@ -13,8 +13,8 @@ $info = getDestinationInfo($destination);
     <link rel="stylesheet" href="styles/navigation.css">
     <link rel="stylesheet" href="styles/components.css">
     <link rel="stylesheet" href="styles/forms.css">
-    <link rel="stylesheet" href="styles/destination.css">
-    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/destination.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="styles/footer.css?v=<?php echo time(); ?>">
     <link rel="icon" type="image/png" href="icon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,22 +26,10 @@ $info = getDestinationInfo($destination);
     
     <div class="destination-container">
         <div class="destination-hero">
-            <img class="destination-banner" src="<?php echo $info["image"] ?>" alt="<?php echo $destination ?>">
+            <img class="destination-banner" src="<?php echo $info["image"] ?>" alt="<?php echo $info["nom"] ?>">
             <div class="hero-overlay">
-                <h1 class="destination-title"><?php echo $destination ?></h1>
-                <div class="destination-rating">
-                    <?php 
-                    $note = $info["note"];
-                    for ($i = 1; $i <= 5; $i++) {
-                        if ($i <= floor($note)) {
-                            echo "⭐";
-                        } elseif ($i - $note < 1) {
-                            echo "⭐";
-                        }
-                    }
-                    ?>
-                    <span class="rating-number"><?php echo $note ?>/5</span>
-                </div>
+                <h1 class="destination-title"><?php echo $info["nom"] ?></h1>
+
             </div>
         </div>
         
@@ -51,15 +39,6 @@ $info = getDestinationInfo($destination);
                     <h2>À propos de cette destination</h2>
                     <p class="destination-description"><?php echo $info["description"] ?></p>
                 </div>
-                
-                <div class="info-card">
-                    <h2>Points d'intérêt</h2>
-                    <ul class="points-list">
-                        <?php foreach ($info["points_interet"] as $point): ?>
-                            <li>📍 <?php echo $point ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
             </div>
             
             <div class="destination-sidebar">
@@ -67,7 +46,7 @@ $info = getDestinationInfo($destination);
                     <h3>Informations pratiques</h3>
                     
                     <div class="info-row">
-                        <span class="info-icon">💰</span>
+                        <span class="info-icon"><i class="fa-solid fa-wallet" aria-hidden="true"></i></span>
                         <div class="info-text">
                             <span class="info-label">À partir de</span>
                             <span class="info-value"><?php echo $info["prix"] ?></span>
@@ -75,30 +54,22 @@ $info = getDestinationInfo($destination);
                     </div>
                     
                     <div class="info-row">
-                        <span class="info-icon">⏱️</span>
-                        <div class="info-text">
-                            <span class="info-label">Durée recommandée</span>
-                            <span class="info-value"><?php echo $info["duree"] ?></span>
-                        </div>
-                    </div>
-                    
-                    <div class="info-row">
-                        <span class="info-icon">🌤️</span>
+                        <span class="info-icon"><i class="fa-solid fa-cloud-sun" aria-hidden="true"></i></span>
                         <div class="info-text">
                             <span class="info-label">Meilleure période</span>
-                            <span class="info-value"><?php echo $info["periode"] ?></span>
+                            <span class="info-value"><?php echo $info["meilleurPeriode"] ?></span>
                         </div>
                     </div>
                     
                     <div class="info-row">
-                        <span class="info-icon">🎯</span>
+                        <span class="info-icon"><i class="fa-solid fa-bullseye" aria-hidden="true"></i></span>
                         <div class="info-text">
                             <span class="info-label">Activités</span>
-                            <span class="info-value"><?php echo $info["activites"] ?></span>
+                            <span class="info-value"><?php echo $info["activite"] ?></span>
                         </div>
                     </div>
                     
-                    <a href="contact.php" class="book-btn">Réserver maintenant</a>
+                    <a href="reservation.php?select=<?php echo urlencode($info["nom"]) ?>" class="book-btn">Réserver maintenant</a>
                 </div>
             </div>
         </div>

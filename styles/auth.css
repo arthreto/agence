@@ -38,7 +38,6 @@
     margin-bottom: 40px;
 }
 
-/* Message d'erreur */
 .error {
     background: rgba(230, 17, 17, 0.5);
     color: white;
@@ -51,7 +50,6 @@
     font-weight: 500;
 }
 
-/* Message de succès (optionnel) */
 .success {
     background: linear-gradient(135deg, #4caf50, #2e7d32);
     color: white;

@@ -13,6 +13,7 @@
     height: 500px;
     overflow: hidden;
     margin-bottom: 50px;
+    border-radius: 24px;
 }
 
 .destination-banner {
@@ -41,21 +42,7 @@
     letter-spacing: 2px;
 }
 
-.destination-rating {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-size: 1.5em;
-}
 
-.rating-number {
-    color: white;
-    font-family: "Inter", sans-serif;
-    font-weight: 600;
-    font-size: 0.7em;
-}
-
-/* Content layout */
 .destination-content {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -70,7 +57,6 @@
     gap: 30px;
 }
 
-/* Cards */
 .info-card {
     background: #2a2a2a;
     border-radius: 20px;
@@ -94,30 +80,7 @@
     margin: 0;
 }
 
-.points-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-}
 
-.points-list li {
-    color: #cccccc;
-    font-family: "Inter", sans-serif;
-    font-size: 1.05em;
-    padding: 15px 20px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-    transition: all 0.3s ease;
-}
-
-.points-list li:hover {
-    background: rgba(74, 158, 255, 0.1);
-}
-
-/* Sidebar booking card */
 .destination-sidebar {
     position: sticky;
     top: 80px;
@@ -155,6 +118,10 @@
     font-size: 1.8em;
     min-width: 40px;
     text-align: center;
+}
+
+.info-icon i {
+    color: #8fc3ff;
 }
 
 .info-text {
@@ -250,10 +217,6 @@
     
     .destination-title {
         font-size: 2em;
-    }
-    
-    .destination-rating {
-        font-size: 1.2em;
     }
     
     .destination-content {

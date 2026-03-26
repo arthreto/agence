@@ -37,8 +37,13 @@
                         } else {
                             $user = $stmt->fetch();
                             if (password_verify($password, $user['password'])) {
+                                $stmt = $pdo->prepare("UPDATE FROM users token=:token WHERE user_id=:user_id");
+                                $GenerateToken = bin2hex(random_bytes(32));
+                                $stmt->bindParam(':token', $GenerateToken, PDO::PARAM_STR);
+                                $stmt->execute();
+
                                 session_start();
-                                $_SESSION['user_id'] = $user['ID'];
+                                $_SESSION['token'] = $GenerateToken;
                                 $_SESSION['email'] = $user['email'];
                                 header("Location: index.php");
                                 exit();
