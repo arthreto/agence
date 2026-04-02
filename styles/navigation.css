@@ -69,6 +69,14 @@
     background: #278cfd;
 }
 
+.menu-secondaire a.panel-btn {
+    background: linear-gradient(135deg, #f0a500, #c47f00);
+}
+
+.menu-secondaire a.panel-btn:hover {
+    background: linear-gradient(135deg, #c47f00, #9a6200);
+}
+
 @media (max-width: 768px) {
     .menu-principal ul {
         flex-wrap: wrap;

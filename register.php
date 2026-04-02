@@ -26,10 +26,13 @@
                 <?php
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $email = $_POST["email"];
+                        $pseudo = trim($_POST["pseudo"]);
                         $password = $_POST["password"];
                         $confirm_password = $_POST["confirm_password"];
                         
-                        if ($password !== $confirm_password) {
+                        if (empty($pseudo)) {
+                            echo "<p class='error'>Le pseudo est obligatoire.</p>";
+                        } elseif ($password !== $confirm_password) {
                             echo "<p class='error'>Les mots de passe ne correspondent pas.</p>";
                         } else {
                             include 'config/pdo.php';
@@ -40,8 +43,8 @@
                                 echo "<p class='error'>Cette adresse email est déjà utilisée.</p>";
                             } else {
                                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                                $stmt = $pdo->prepare("INSERT INTO users (email, password) VALUES (?, ?)");
-                                $stmt->execute([$email, $hashed_password]);
+                                $stmt = $pdo->prepare("INSERT INTO users (email, pseudo, password, rank) VALUES (?, ?, ?, 'Client')");
+                                $stmt->execute([$email, $pseudo, $hashed_password]);
                                 echo "<p class='success'>Votre compte a été créé avec succès.</p>";
                             }
                         }
@@ -51,6 +54,11 @@
                 <p class="auth-subtitle">Créez votre compte pour réserver vos voyages</p>
                 
                 <form class="auth-form" action="register.php" method="post">
+                    <div class="form-group">
+                        <label for="pseudo">Pseudo</label>
+                        <input type="text" id="pseudo" name="pseudo" placeholder="VoyageurDuMonde" required>
+                    </div>
+
                     <div class="form-group">
                         <label for="email">Adresse email</label>
                         <input type="email" id="email" name="email" placeholder="votre.email@exemple.fr" required>

@@ -1,0 +1,88 @@
+/* Styles de la page compte */
+
+.compte-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.compte-avatar {
+    font-size: 5em;
+    color: #4a9eff;
+    line-height: 1;
+    margin-top: 1vh;
+}
+
+#gotopanel {
+    color:white;
+    display:inline-block;
+    text-decoration:none;
+    text-align:center;
+}
+
+.compte-details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.compte-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 15px 20px;
+}
+
+.compte-label {
+    color: #b0b0b0;
+    font-family: "Inter", sans-serif;
+    font-size: 0.9em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.compte-value {
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.compte-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-family: "Inter", sans-serif;
+    font-size: 0.95em;
+    font-weight: 600;
+}
+
+.compte-badge.client {
+    background: rgba(74, 158, 255, 0.2);
+    color: #4a9eff;
+    border: 1px solid rgba(74, 158, 255, 0.4);
+}
+
+.compte-badge.admin {
+    background: rgba(240, 165, 0, 0.2);
+    color: #f0a500;
+    border: 1px solid rgba(240, 165, 0, 0.4);
+}
+
+@media (max-width: 480px) {
+    .compte-field {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+

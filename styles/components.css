@@ -9,23 +9,17 @@
     font-family: "Inter", sans-serif;
 }
 
-.presentation {
+.presentation, .welcome-container {
     width: 80%;
-    margin: 0 auto;
+    margin: 20px auto;
     background: linear-gradient(#363636, #35363b);
     border-radius: 2vw;
+    font-family: "Inter", sans-serif;
 }
 
 .inpresentation {
-    padding-top: 30px;
-    position: relative;
-    width: 80%;
-    height: 80%;
-    top: 10%;
-    left: 10%;
-    padding-bottom: 30px;
+    padding: 30px 10%;
     color: white;
-    font-family: "Inter", sans-serif;
 }
 
 .tendances {

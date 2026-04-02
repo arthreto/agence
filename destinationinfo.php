@@ -49,7 +49,7 @@ $info = getDestinationInfo($destination);
                         <span class="info-icon"><i class="fa-solid fa-wallet" aria-hidden="true"></i></span>
                         <div class="info-text">
                             <span class="info-label">À partir de</span>
-                            <span class="info-value"><?php echo $info["prix"] ?></span>
+                            <span class="info-value"><?php echo $info["prix"] . "€" ?></span>
                         </div>
                     </div>
                     
