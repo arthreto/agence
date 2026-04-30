@@ -43,8 +43,8 @@
                                 echo "<p class='error'>Cette adresse email est déjà utilisée.</p>";
                             } else {
                                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                                $stmt = $pdo->prepare("INSERT INTO users (email, pseudo, password, rank) VALUES (?, ?, ?, 'Client')");
-                                $stmt->execute([$email, $pseudo, $hashed_password]);
+                                $stmt = $pdo->prepare("INSERT INTO users (email, pseudo, password, `rank`) VALUES (?, ?, ?, ?)");
+                                $stmt->execute([$email, $pseudo, $hashed_password, 'Client']);
                                 echo "<p class='success'>Votre compte a été créé avec succès.</p>";
                             }
                         }

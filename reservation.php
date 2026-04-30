@@ -27,6 +27,7 @@ if (!$info) {
         if(isset($_GET["depart"], $_GET["retour"])) {
             $dateArrivee = $_GET["depart"];
             $dateDepart  = $_GET["retour"];
+            $nbPersonnes = max(1, (int)($_GET["personnes"] ?? 1));
 
             if (!$dateArrivee || !$dateDepart) {
                 echo json_encode(["success" => false, "error" => "Dates invalides"]);
@@ -43,7 +44,7 @@ if (!$info) {
                     "INSERT INTO reservation (voyage_id, user_id, nbPersonnes, statut, dateArrivee, dateDepart) 
                 VALUES (?, ?, ?, ?, ?, ?)"
             );
-            $stmt->execute([$info["id"], $_SESSION['user_id'], 1, "Wait", $dateArrivee, $dateDepart]);
+            $stmt->execute([$info["id"], $_SESSION['user_id'], $nbPersonnes, "W", $dateArrivee, $dateDepart]);
             if($stmt->rowCount() > 0) {
                 echo json_encode(["success" => true, "reservation" => $info]);
             } else {
@@ -174,6 +175,7 @@ $prixBase = intval(preg_replace('/[^0-9]/', '', $info["prix"]));
             const depart = document.getElementById('date-depart').value;
             const retour = document.getElementById('date-retour').value;
             const nomvoy = document.getElementById("nomvoy").textContent;
+            const personnes = parseInt(document.getElementById('adultes').value) + parseInt(document.getElementById('enfants').value);
 
             const errorlabel = document.getElementById("error");
             errorlabel.style.display = 'none';
@@ -192,7 +194,7 @@ $prixBase = intval(preg_replace('/[^0-9]/', '', $info["prix"]));
             document.getElementById('resaForm').style.display = 'none';
 
             console.log(nomvoy, depart, retour);
-            fetch("reservation.php?select=" + nomvoy + "&depart=" + depart + "&retour=" + retour)
+            fetch("reservation.php?select=" + encodeURIComponent(nomvoy) + "&depart=" + depart + "&retour=" + retour + "&personnes=" + personnes)
                 .then(res => res.json())
                 .then(data => {
                     if (data.success) {

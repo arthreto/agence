@@ -9,10 +9,12 @@ include 'config/pdo.php';
 
 $message = '';
 $messageType = '';
+$view = $_GET['view'] ?? 'voyages';
 
-/* ── ACTIONS CRUD ───────────────────────────────────────── */
+if (!in_array($view, ['voyages', 'users'], true)) {
+    $view = 'voyages';
+}
 
-// SUPPRIMER
 if (isset($_POST['action']) && $_POST['action'] === 'delete') {
     $id = (int) $_POST['id'];
     $stmt = $pdo->prepare("DELETE FROM voyages WHERE id = ?");
@@ -21,7 +23,6 @@ if (isset($_POST['action']) && $_POST['action'] === 'delete') {
     $messageType = 'success';
 }
 
-// AJOUTER
 if (isset($_POST['action']) && $_POST['action'] === 'add') {
     $nom          = trim($_POST['nom']);
     $description  = trim($_POST['description']);
@@ -41,7 +42,6 @@ if (isset($_POST['action']) && $_POST['action'] === 'add') {
     }
 }
 
-// MODIFIER
 if (isset($_POST['action']) && $_POST['action'] === 'edit') {
     $id           = (int) $_POST['id'];
     $nom          = trim($_POST['nom']);
@@ -62,9 +62,31 @@ if (isset($_POST['action']) && $_POST['action'] === 'edit') {
     }
 }
 
-/* ── RÉCUPÉRER TOUTES LES DESTINATIONS ──────────────────── */
+
+if (isset($_POST['action']) && $_POST['action'] === 'delete_user') {
+    $id = (int) $_POST['id'];
+    $view = 'users';
+
+    if ($id === (int) $_SESSION['user_id']) {
+        $message = 'Impossible de supprimer votre propre compte depuis le panel.';
+        $messageType = 'error';
+    } else {
+        $stmt = $pdo->prepare("DELETE FROM reservation WHERE user_id = ?");
+        $stmt->execute([$id]);
+
+        $stmt = $pdo->prepare("DELETE FROM users WHERE ID = ?");
+        $stmt->execute([$id]);
+
+        $message = 'Utilisateur supprimé avec succès.';
+        $messageType = 'success';
+    }
+}
+
 $stmt = $pdo->query("SELECT * FROM voyages ORDER BY id ASC");
 $destinations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$stmt = $pdo->query("SELECT ID, pseudo, email, `rank` FROM users ORDER BY ID ASC");
+$users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -95,9 +117,20 @@ $destinations = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <h1>Panel Admin</h1>
                 </div>
             </div>
-            <button class="btn-add" onclick="openModal()">
-                <i class="fa-solid fa-plus"></i> Ajouter une destination
-            </button>
+            <?php if ($view === 'voyages'): ?>
+                <button class="btn-add" onclick="openModal()">
+                    <i class="fa-solid fa-plus"></i> Ajouter une destination
+                </button>
+            <?php endif; ?>
+        </div>
+
+        <div class="panel-tabs">
+            <a class="panel-tab <?= $view === 'voyages' ? 'active' : '' ?>" href="panel.php?view=voyages">
+                <i class="fa-solid fa-plane"></i> Voyages
+            </a>
+            <a class="panel-tab <?= $view === 'users' ? 'active' : '' ?>" href="panel.php?view=users">
+                <i class="fa-solid fa-users"></i> Utilisateurs
+            </a>
         </div>
 
         <!-- Message de retour -->
@@ -108,6 +141,7 @@ $destinations = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         <?php endif; ?>
 
+        <?php if ($view === 'voyages'): ?>
         <!-- Tableau des destinations -->
         <div class="panel-card">
             <div class="panel-card-header">
@@ -147,7 +181,7 @@ $destinations = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td><?= htmlspecialchars($dest['meilleurPeriode']) ?></td>
                             <td class="td-activite"><?= htmlspecialchars($dest['activite']) ?></td>
                             <td class="td-actions">
-                                <button class="btn-edit" onclick='openEditModal(<?= json_encode($dest) ?>)'>
+                                <button class="btn-edit" onclick='openEditModal(<?= htmlspecialchars(json_encode($dest), ENT_QUOTES, 'UTF-8') ?>)'>
                                     <i class="fa-solid fa-pen"></i> Modifier
                                 </button>
                                 <form method="POST" onsubmit="return confirm('Supprimer cette destination ?');" style="display:inline;">
@@ -165,6 +199,62 @@ $destinations = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <?php endif; ?>
         </div>
+        <?php else: ?>
+        <!-- Tableau des utilisateurs -->
+        <div class="panel-card">
+            <div class="panel-card-header">
+                <h2><i class="fa-solid fa-users"></i> Utilisateurs (<?= count($users) ?>)</h2>
+            </div>
+
+            <?php if (empty($users)): ?>
+                <div class="panel-empty">
+                    <i class="fa-solid fa-user-slash"></i>
+                    <p>Aucun utilisateur pour l'instant.</p>
+                </div>
+            <?php else: ?>
+            <div class="panel-table-wrapper">
+                <table class="panel-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Email</th>
+                            <th>Pseudo</th>
+                            <th>Grade</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($users as $user): ?>
+                        <tr>
+                            <td class="td-id"><?= htmlspecialchars($user['ID']) ?></td>
+                            <td class="td-nom"><strong><?= htmlspecialchars($user['email']) ?></strong></td>
+                            <td><?= htmlspecialchars($user['pseudo'] ?? '') ?></td>
+                            <td>
+                                <span class="panel-rank <?= strtolower(htmlspecialchars($user['rank'] ?? 'client')) ?>">
+                                    <?= htmlspecialchars($user['rank'] ?? 'Client') ?>
+                                </span>
+                            </td>
+                            <td class="td-actions">
+                                <?php if ((int) $user['ID'] === (int) $_SESSION['user_id']): ?>
+                                    <span class="panel-current-user">Compte actuel</span>
+                                <?php else: ?>
+                                    <form method="POST" onsubmit="return confirm('Supprimer cet utilisateur ? Ses réservations seront aussi supprimées.');" style="display:inline;">
+                                        <input type="hidden" name="action" value="delete_user">
+                                        <input type="hidden" name="id" value="<?= htmlspecialchars($user['ID']) ?>">
+                                        <button type="submit" class="btn-delete">
+                                            <i class="fa-solid fa-trash"></i> Supprimer
+                                        </button>
+                                    </form>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <?php endif; ?>
+        </div>
+        <?php endif; ?>
     </div>
 
     <!-- ── MODAL AJOUTER / MODIFIER ──────────────────────── -->

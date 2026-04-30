@@ -29,8 +29,8 @@ if (isset($_GET['logout'])) {
             if (isset($_SESSION['user_id'])) {
 
                 echo '<li class="menu-secondaire" style="margin-left: 25vw;"><a class="compte-btn" href="compte.php">Compte</a></li>';
-                echo '<li class="menu-secondaire" style="margin-left: 0px;"><a class="logout" href="index.php?logout=1">Deconnexion</a></li>';
                 echo '<li class="menu-secondaire" style="margin-left: 0px;"><a class="cart" href="panier.php" title="Mon panier"><span>Panier</span></a></li>';
+                echo '<li class="menu-secondaire" style="margin-left: 0px;"><a class="logout" href="index.php?logout=1">Deconnexion</a></li>';
             } else {
                 echo '<li class="menu-secondaire"><a class="login" href="login.php">Connexion</a></li>';
             }

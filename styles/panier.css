@@ -27,6 +27,107 @@
     gap: 12px;
 }
 
+.panier-item {
+    position: relative;
+    display: flex;
+    gap: 18px;
+    width: 100%;
+    max-width: none;
+    margin-right: 0;
+    background: #363636;
+    border-radius: 12px;
+    padding: 14px;
+    box-sizing: border-box;
+    color: white;
+    font-family: "Inter", sans-serif;
+}
+
+.panier-cancel-form {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin: 0;
+}
+
+.panier-cancel {
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(230, 57, 57, 0.18);
+    color: #ff8a8a;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.panier-cancel:hover {
+    background: rgba(230, 57, 57, 0.32);
+    color: #fff;
+}
+
+.panier-item-image {
+    width: 145px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.panier-item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.panier-item-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: flex-start;
+    padding-right: 36px;
+}
+
+.panier-item-header h2 {
+    margin: 0;
+    font-size: 20px;
+    overflow-wrap: anywhere;
+}
+
+.panier-status {
+    background: #4a9eff;
+    color: #fff;
+    border-radius: 999px;
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.panier-details {
+    display: grid;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.panier-details p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 14px;
+}
+
+.panier-details i {
+    width: 18px;
+    color: #4a9eff;
+}
+
+.panier-price {
+    margin: 14px 0 0;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+}
+
 .panier-empty {
     display: flex;
     flex-direction: column;
@@ -73,6 +174,20 @@
     .panier-section {
         padding: 24px 20px;
         border-radius: 16px;
+    }
+
+    .panier-item {
+        flex-direction: column;
+    }
+
+    .panier-item-image {
+        width: 100%;
+        height: 170px;
+    }
+
+    .panier-item-header {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
 

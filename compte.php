@@ -43,6 +43,11 @@ if (!isset($_SESSION['user_id'])) {
                         </div>
 
                         <div class="compte-field">
+                            <span class="compte-label">Pseudonyme</span>
+                            <span class="compte-value"><?= htmlspecialchars($_SESSION['pseudo']) ?></span>
+                        </div>
+
+                        <div class="compte-field">
                             <span class="compte-label">Grade</span>
                             <span class="compte-badge <?= strtolower($_SESSION['rank']) ?>">
                                 <?php if ($_SESSION['rank'] === 'Admin'): ?>

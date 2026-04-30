@@ -20,10 +20,10 @@
     <?php include 'includes/utils.php'; ?>
     <h1 class="titre">Agence de voyage</h1>
 
-    <?php if (isset($_SESSION['email'])): ?>
+    <?php if (isset($_SESSION['pseudo'])): ?>
         <div class="welcome-container">
             <p class="inpresentation" style="text-align: center; font-weight: bold; font-size: 1.2em; padding-bottom: 30px;">
-                Bienvenue, <?php echo htmlspecialchars(explode('@', $_SESSION['email'])[0]); ?>
+                Bienvenue, <?php echo htmlspecialchars(explode('@', $_SESSION['pseudo'])[0]); ?>
             </p>
         </div>
     <?php endif; ?>

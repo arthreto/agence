@@ -40,6 +40,7 @@
                                 session_start();
                                 $_SESSION['user_id'] = $user["ID"];
                                 $_SESSION['email'] = $user['email'];
+                                $_SESSION['pseudo'] = $user['pseudo'];
                                 $_SESSION['rank'] = $user['rank'];
                                 header("Location: index.php");
                                 exit();
